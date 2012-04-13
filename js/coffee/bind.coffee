@@ -6,7 +6,7 @@ class Video
     @published = if params.published? then params.published else null
     @updated = if params.updated? then params.updated else null
     @content = if params.content? then params.content else null
-    @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9]+位：/, "")}") else null
+    @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9０-９]+位(：|:)/, "")}") else null
   toHtml: () ->
     html = """
       <section class='item clearfix'>

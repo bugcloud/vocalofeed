@@ -9,7 +9,7 @@ Video = (function() {
     this.published = params.published != null ? params.published : null;
     this.updated = params.updated != null ? params.updated : null;
     this.content = params.content != null ? params.content : null;
-    this.youtube_search = params.title != null ? encodeURI("http://www.youtube.com/results?search_query=" + (params.title.replace(/第[0-9]+位：/, ""))) : null;
+    this.youtube_search = params.title != null ? encodeURI("http://www.youtube.com/results?search_query=" + (params.title.replace(/第[0-9０-９]+位(：|:)/, ""))) : null;
   }
 
   Video.prototype.toHtml = function() {
