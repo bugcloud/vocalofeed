@@ -11,11 +11,11 @@ class Video
     html = """
       <section class='item clearfix'>
         <div class='item_content clearfix'>
-          <h1><a href='#{@link}'>#{@title}</a></h1>
+          <h1><a href='#{@link}' target='_blank'>#{@title}</a></h1>
           #{@content}
         </div>
         <div class='item_extra'>
-          <a href='#{@youtube_search}'>Search in YouTube</a>
+          <a href='#{@youtube_search}' target='_blank'>YouTube Search</a>
         </div>
       </section>
     """
