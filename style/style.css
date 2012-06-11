@@ -15,6 +15,10 @@ body {
   background: url(../img/bg.png) repeat top left;
 }
 
+#main {
+  margin-top: 85px;
+}
+
 section.item {
   background-color: rgba(255, 255, 255, 0.85);
   margin: 1em 0;
@@ -31,6 +35,11 @@ section.item {
 section.item .item_content .nico-thumbnail {
   float: left;
   margin: 5px 25px 15px 0;
+}
+
+p.nico-description {
+  color: #555;
+  line-height: 1.8;
 }
 
 @media screen and (max-width: 650px) {
