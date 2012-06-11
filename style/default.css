@@ -1,0 +1,75 @@
+@charset "utf-8";
+/* ===================================================================
+CSS information
+ file name  :  default.css
+ style info : 
+=================================================================== */
+body {
+	background: #fff;
+	color: #333;
+	
+	font:13px "TransportD-Med","Arial","ヒラギノ角ゴ Pro W3", "Hiragino Kaku Gothic Pro",Osaka,"ＭＳ Ｐゴシック", "MS PGothic","メイリオ", Meiryo,sans-serif,"宋体",Gulim;
+	
+	/*font:13px "Georgia, "Times New Roman", Times, serif";*/
+    *font-size:small;
+    *font:x-small;
+	line-height: 1.5;
+}
+* html body {	/* for IF6 */
+	font-family: "ＭＳ Ｐゴシック","MS PGothic",Sans-Serif;
+}
+.TransportD-Med { font-family: TransportD-Med; }
+.TransportD-Bol { font-family: TransportD-Bol; }
+/* Font Size --------------------------------- */
+p,li,dt,dd,th,td {	font-size: 93%;}
+li p,dd p,li li,dd li,th p,td p {	font-size: 100%;}
+h1,h2,h3,h4,h5,h6 {	font-size: 100%;}
+table {	font-size: inherit; font-size: 100%;}
+img{ vertical-align: bottom;}
+/* line-height --------------------------------- */
+p,li,dt,dd,th,td {    line-height: 1.48;}
+/*Safari*/
+body:first-of-type p,
+body:first-of-type li,
+body:first-of-type dt,
+body:first-of-type dd,
+body:first-of-type th,
+body:first-of-type td {    line-height: 1.48;}
+/**/
+html:not(:only-child:only-child) p,
+html:not(:only-child:only-child) li,
+html:not(:only-child:only-child) dt,
+html:not(:only-child:only-child) dd,
+html:not(:only-child:only-child) th,
+html:not(:only-child:only-child) td { font-size: 100%;}
+html:not(:only-child:only-child) h1,
+html:not(:only-child:only-child) h2,
+html:not(:only-child:only-child) h3,
+html:not(:only-child:only-child) h4{ font-size: 116%;}
+/**/
+/* Common Links --------------------------------- */
+a,a:link {	color: #323232; text-decoration: none; border-bottom: none; outline: none;}
+a:visited {	color: #323232; text-decoration: none; border-bottom: none;}
+a:hover {  color: #666; text-decoration: none; border-bottom: none;}
+a:active {  color: #323232; text-decoration: none; border-bottom: none;}
+
+/* clearfix --------------------------------- */
+.clearfix:after {
+	visibility: hidden;
+	display: block;
+	font-size: 0;
+	content: " ";
+	clear: both;
+	height: 0;
+	}
+* html .clearfix             { zoom: 1; } /* IE6 */
+*:first-child+html .clearfix { zoom: 1; } /* IE7 */
+/* */
+/*---------------------------------------------------------------------*/
+/*------------------------------------------------------*/
+/* noneImages */
+/*------------------------------------------------------*/
+.noneImages {
+	display: none;
+}
+.nf-message { display: none; }
