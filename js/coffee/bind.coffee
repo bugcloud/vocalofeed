@@ -6,16 +6,16 @@ class Video
     @published = if params.published? then params.published else null
     @updated = if params.updated? then params.updated else null
     @content = if params.content? then params.content else null
-    @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9]+位：/, "")}") else null
+    @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9０-９]+位(：|:)/, "")}") else null
   toHtml: () ->
     html = """
       <section class='item clearfix'>
         <div class='item_content clearfix'>
-          <h1><a href='#{@link}'>#{@title}</a></h1>
+          <h1><a href='#{@link}' target='_blank'>#{@title}</a></h1>
           #{@content}
         </div>
         <div class='item_extra'>
-          <a href='#{@youtube_search}'>Search in YouTube</a>
+          <a href='#{@youtube_search}' target='_blank'>YouTube Search</a>
         </div>
       </section>
     """

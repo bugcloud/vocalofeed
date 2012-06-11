@@ -9,12 +9,12 @@ Video = (function() {
     this.published = params.published != null ? params.published : null;
     this.updated = params.updated != null ? params.updated : null;
     this.content = params.content != null ? params.content : null;
-    this.youtube_search = params.title != null ? encodeURI("http://www.youtube.com/results?search_query=" + (params.title.replace(/第[0-9]+位：/, ""))) : null;
+    this.youtube_search = params.title != null ? encodeURI("http://www.youtube.com/results?search_query=" + (params.title.replace(/第[0-9０-９]+位(：|:)/, ""))) : null;
   }
 
   Video.prototype.toHtml = function() {
     var html;
-    html = "<section class='item clearfix'>\n  <div class='item_content clearfix'>\n    <h1><a href='" + this.link + "'>" + this.title + "</a></h1>\n    " + this.content + "\n  </div>\n  <div class='item_extra'>\n    <a href='" + this.youtube_search + "'>Search in YouTube</a>\n  </div>\n</section>";
+    html = "<section class='item clearfix'>\n  <div class='item_content clearfix'>\n    <h1><a href='" + this.link + "' target='_blank'>" + this.title + "</a></h1>\n    " + this.content + "\n  </div>\n  <div class='item_extra'>\n    <a href='" + this.youtube_search + "' target='_blank'>YouTube Search</a>\n  </div>\n</section>";
     return html;
   };
 
