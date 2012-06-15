@@ -1,3 +1,61 @@
+/* animations --------------------------------- */
+@keyframes slice-in {
+  0% {
+    margin-left: 2000px; opacity: 0;}
+  30% {
+    margin-left: 200px; }
+  70% {
+    opacity: 0.7; }
+  100% {
+    margin-left: 0; opacity: 1;}
+  }
+@-webkit-keyframes slice-in {
+  0% {
+    margin-left: 2000px; opacity: 0;}
+  30% {
+    margin-left: 200px; }
+  70% {
+    opacity: 0.7; }
+  100% {
+    margin-left: 0; opacity: 1;}
+  }
+@-moz-keyframes slice-in {
+  0% {
+    margin-left: 2000px; opacity: 0;}
+  30% {
+    margin-left: 200px; }
+  70% {
+    opacity: 0.7; }
+  100% {
+    margin-left: 0; opacity: 1;}
+  }
+
+@keyframes slice-out {
+  0% {
+    margin-left: 0; }
+  70% {
+    margin-left: -100px; }
+  100% {
+    margin-left: -2000px; opacity: .3;}
+  }
+@-webkit-keyframes slice-out {
+  0% {
+    margin-left: 0; }
+  70% {
+    margin-left: -100px; }
+  100% {
+    margin-left: -2000px; opacity: .3;}
+  }
+@-moz-keyframes slice-out {
+  0% {
+    margin-left: 0; }
+  70% {
+    margin-left: -100px; }
+  100% {
+    margin-left: -2000px; opacity: .3;}
+  }
+/* */
+
 /* clearfix --------------------------------- */
 .clearfix:after {
   visibility: hidden;
@@ -13,6 +71,7 @@
 
 body {
   background: url(../img/bg.png) repeat top left;
+  overflow-x: hidden;
 }
 
 #main {
@@ -20,10 +79,11 @@ body {
 }
 
 section.item {
+  width: 940px;
   background-color: rgba(255, 255, 255, 0.85);
   margin: 1em 0;
   padding: 30px;
-  display: none;
+  opacity: 0;
   -webkit-border-radius: 8px;
   -moz-border-radius: 8px;
   border-radius: 8px
@@ -40,6 +100,33 @@ section.item .item_content .nico-thumbnail {
 p.nico-description {
   color: #555;
   line-height: 1.8;
+}
+
+.slice-in {
+  animation-name: slice-in;
+  -webkit-animation-name: slice-in;
+  -moz-animation-name: slice-in;
+  animation-duration: 1.5s;
+  -webkit-animation-duration: 1.5s;
+  -moz-animation-duration: 1.5s;
+  animation-timing-function: ease-out;
+  -webkit-animation-timing-function: ease-out;
+  -moz-animation-timing-function: ease-out;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
+}
+
+.slice-out {
+  animation-name: slice-out;
+  -webkit-animation-name: slice-out;
+  -moz-animation-name: slice-out;
+  animation-duration: .7s;
+  -webkit-animation-duration: .7s;
+  -moz-animation-duration: .7s;
+  animation-iteration-count: 1;
+  -webkit-animation-iteration-count: 1;
+  -moz-animation-iteration-count: 1;
 }
 
 @media screen and (max-width: 650px) {
