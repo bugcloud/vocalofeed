@@ -58,28 +58,56 @@ class Niconico
     this.fetch(callback)
 
   defaultCallback: (data) ->
-    target = $("#main")
-    target.html ""
-    count = 0
-    _videos.clear()
-    $(data).find('entry').each ()->
-      count++
-      return false if count > 100
-      id = $(this).find('id').text().trim()
-      id = id.substr(id.indexOf('sm'))
-      params = {
-        title: $(this).find('title').text().trim()
-        link: $(this).find('link').attr('href')
-        id: id
-        published: $(this).find('published').text().trim()
-        updated: $(this).find('updated').text().trim()
-        content: $(this).find('content').text().trim()
-      }
-      video = new Video(params)
-      _videos.list.push video
-    for v in _videos.list
-      target.append v.toHtml()
-    $(".item").fadeIn(800)
+    itemsAreVisible = $(".item:visible").size() > 0
+    intervalAll = if itemsAreVisible then 1500 else 1
+    intervalScroll = if itemsAreVisible then 350 else 1
+    $('html, body').animate {scrollTop: 0}, intervalScroll, () ->
+      target = $("#main")
+
+      if itemsAreVisible
+        i = 0
+        $(".item:lt(5)").each () ->
+          _that = this
+          i += 400
+          setTimeout () ->
+            $(_that).addClass('slice-out')
+            setTimeout () ->
+              $(_that).css('opacity', 0)
+            , 700
+          , i
+
+      setTimeout () ->
+        target.html ""
+        count = 0
+        _videos.clear()
+        $(data).find('entry').each ()->
+          count++
+          return false if count > 100
+          id = $(this).find('id').text().trim()
+          id = id.substr(id.indexOf('sm'))
+          params = {
+            title: $(this).find('title').text().trim()
+            link: $(this).find('link').attr('href')
+            id: id
+            published: $(this).find('published').text().trim()
+            updated: $(this).find('updated').text().trim()
+            content: $(this).find('content').text().trim()
+          }
+          video = new Video(params)
+          _videos.list.push video
+        for v in _videos.list
+          target.append v.toHtml()
+        interval = 0
+        $(".item:lt(5)").each () ->
+          interval += 400
+          _that = this
+          setTimeout () ->
+            $(_that).addClass('slice-in')
+          , interval
+        setTimeout () ->
+          $(".item").css('opacity', 1)
+        ,(interval)
+      , intervalAll
 
 _nico = new Niconico()
 _videos = new VideoList()
