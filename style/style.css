@@ -54,6 +54,43 @@
   100% {
     margin-left: -2000px; opacity: .3;}
   }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
+  }
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
+  }
+@-moz-keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
+  }
 /* */
 
 /* clearfix --------------------------------- */
@@ -129,13 +166,54 @@ p.nico-description {
   -moz-animation-iteration-count: 1;
 }
 
+@media screen and (max-width: 960px) {
+  section.item {
+    width: 280px;
+    height: 210px;
+    float: left;
+    margin: 1em 8px;
+  }
+  section.item h1 {
+    font-size: 125%;
+    line-height: 1;
+  }
+  p.nico-description {
+    display: none;
+  }
+  section.item .item_content .nico-thumbnail {
+    width: 100%;
+    text-align: center;
+  }
+  .slice-in {
+    animation-name: fade-in;
+    -webkit-animation-name: fade-in;
+    -moz-animation-name: fade-in;
+  }
+  .slice-out {
+    animation-name: fade-out;
+    -webkit-animation-name: fade-out;
+    -moz-animation-name: fade-out;
+  }
+}
+
 @media screen and (max-width: 650px) {
+  .content {
+    width: 650px;
+  }
+  section.item {
+    width: 200px;
+    height: 180px;
+  }
   section.item h1 {
     font-size: 115%;
+    line-height: 1;
   }
   section.item p,
   section.item a {
     font-size: 80%;
+  }
+  p.nico-info {
+    display: none;
   }
   section.item small {
     font-size: 100%;
