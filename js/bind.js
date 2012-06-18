@@ -37,8 +37,13 @@ Video = (function() {
   }
 
   Video.prototype.toHtml = function() {
-    var html;
-    html = "<section class='item clearfix'>\n  <div class='item_content clearfix'>\n    <h1><a href='" + this.link + "' target='_blank'>" + this.title + "</a></h1>\n    " + this.content + "\n  </div>\n  <div class='item_extra'>\n    <a href='" + this.youtube_search + "' target='_blank'>YouTube Search</a>\n  </div>\n</section>";
+    var c, cc, html, imgSrc, tmp;
+    imgSrc = $(this.content).find('img:first').attr('src');
+    c = $(this.content);
+    c.find('img:first').attr('src', '').attr('data-original', imgSrc).addClass('lazy');
+    tmp = "<div></div>";
+    cc = $(tmp).append(c).html();
+    html = "<section class='item clearfix'>\n  <div class='item_content clearfix'>\n    <h1><a href='" + this.link + "' target='_blank'>" + this.title + "</a></h1>\n    " + cc + "\n  </div>\n  <div class='item_extra'>\n    <a href='" + this.youtube_search + "' target='_blank'>YouTube Search</a>\n  </div>\n</section>";
     return html;
   };
 
@@ -168,13 +173,17 @@ Niconico = (function() {
           var _that;
           interval += 400;
           _that = this;
+          $(_that).find("img.lazy").lazyload({
+            effect: "fadeIn"
+          });
           return setTimeout(function() {
             $(_that).addClass('slide-in');
             return $(_that).css('opacity', 1);
           }, interval);
         });
         return setTimeout(function() {
-          return $(".item").css('opacity', 1);
+          $(".item").css('opacity', 1);
+          return $("img.lazy").lazyload();
         }, interval + 400);
       }, intervalAll);
     });
