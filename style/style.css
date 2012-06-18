@@ -204,15 +204,18 @@ p.nico-description {
 @media screen and (max-width: 650px) {
   .content {
     width: 650px;
+    font-size: 12px;
   }
   section.item {
-    width: 195px;
-    height: 121px;
+    width: 190px;
+    height: 118px;
     margin-bottom: 0;
   }
   section.item h1 {
     font-size: 115%;
     line-height: 1;
+    max-height: 30px;
+    overflow: hidden;
   }
   section.item p,
   section.item a {
