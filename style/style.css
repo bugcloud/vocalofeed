@@ -206,8 +206,9 @@ p.nico-description {
     width: 650px;
   }
   section.item {
-    width: 200px;
-    height: 180px;
+    width: 195px;
+    height: 121px;
+    margin-bottom: 0;
   }
   section.item h1 {
     font-size: 115%;
