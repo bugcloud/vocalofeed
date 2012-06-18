@@ -137,6 +137,8 @@ section.item .item_content .nico-thumbnail {
 p.nico-description {
   color: #fff;
   line-height: 1.8;
+  height: 95px;
+  overflow: hidden;
 }
 
 .slide-in {
