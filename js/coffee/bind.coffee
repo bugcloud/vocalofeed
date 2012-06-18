@@ -198,7 +198,7 @@ class Niconico
           _that = this
           i += 400
           setTimeout () ->
-            $(_that).addClass('slice-out')
+            $(_that).addClass('slide-out')
             setTimeout () ->
               $(_that).css('opacity', 0)
             , 700
@@ -230,7 +230,7 @@ class Niconico
           interval += 400
           _that = this
           setTimeout () ->
-            $(_that).addClass('slice-in')
+            $(_that).addClass('slide-in')
           , interval
         setTimeout () ->
           $(".item").css('opacity', 1)

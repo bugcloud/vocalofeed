@@ -127,7 +127,7 @@ Niconico = (function() {
           _that = this;
           i += 400;
           return setTimeout(function() {
-            $(_that).addClass('slice-out');
+            $(_that).addClass('slide-out');
             return setTimeout(function() {
               return $(_that).css('opacity', 0);
             }, 700);
@@ -169,7 +169,7 @@ Niconico = (function() {
           interval += 400;
           _that = this;
           return setTimeout(function() {
-            return $(_that).addClass('slice-in');
+            return $(_that).addClass('slide-in');
           }, interval);
         });
         return setTimeout(function() {
