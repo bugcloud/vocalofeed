@@ -1,5 +1,5 @@
 /* animations --------------------------------- */
-@keyframes slice-in {
+@keyframes slide-in {
   0% {
     margin-left: 2000px; opacity: 0;}
   30% {
@@ -9,7 +9,7 @@
   100% {
     margin-left: 0; opacity: 1;}
   }
-@-webkit-keyframes slice-in {
+@-webkit-keyframes slide-in {
   0% {
     margin-left: 2000px; opacity: 0;}
   30% {
@@ -19,7 +19,7 @@
   100% {
     margin-left: 0; opacity: 1;}
   }
-@-moz-keyframes slice-in {
+@-moz-keyframes slide-in {
   0% {
     margin-left: 2000px; opacity: 0;}
   30% {
@@ -30,7 +30,7 @@
     margin-left: 0; opacity: 1;}
   }
 
-@keyframes slice-out {
+@keyframes slide-out {
   0% {
     margin-left: 0; }
   70% {
@@ -38,7 +38,7 @@
   100% {
     margin-left: -2000px; opacity: .3;}
   }
-@-webkit-keyframes slice-out {
+@-webkit-keyframes slide-out {
   0% {
     margin-left: 0; }
   70% {
@@ -46,13 +46,50 @@
   100% {
     margin-left: -2000px; opacity: .3;}
   }
-@-moz-keyframes slice-out {
+@-moz-keyframes slide-out {
   0% {
     margin-left: 0; }
   70% {
     margin-left: -100px; }
   100% {
     margin-left: -2000px; opacity: .3;}
+  }
+
+@keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@-webkit-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@-moz-keyframes fade-in {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 1; }
+  }
+@keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
+  }
+@-webkit-keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
+  }
+@-moz-keyframes fade-out {
+  0% {
+    opacity: 1; }
+  100% {
+    opacity: 0; }
   }
 /* */
 
@@ -102,13 +139,13 @@ p.nico-description {
   line-height: 1.8;
 }
 
-.slice-in {
-  animation-name: slice-in;
-  -webkit-animation-name: slice-in;
-  -moz-animation-name: slice-in;
-  animation-duration: 1.5s;
-  -webkit-animation-duration: 1.5s;
-  -moz-animation-duration: 1.5s;
+.slide-in {
+  animation-name: slide-in;
+  -webkit-animation-name: slide-in;
+  -moz-animation-name: slide-in;
+  animation-duration: .7s;
+  -webkit-animation-duration: .7s;
+  -moz-animation-duration: .7s;
   animation-timing-function: ease-out;
   -webkit-animation-timing-function: ease-out;
   -moz-animation-timing-function: ease-out;
@@ -117,10 +154,10 @@ p.nico-description {
   -moz-animation-iteration-count: 1;
 }
 
-.slice-out {
-  animation-name: slice-out;
-  -webkit-animation-name: slice-out;
-  -moz-animation-name: slice-out;
+.slide-out {
+  animation-name: slide-out;
+  -webkit-animation-name: slide-out;
+  -moz-animation-name: slide-out;
   animation-duration: .7s;
   -webkit-animation-duration: .7s;
   -moz-animation-duration: .7s;
@@ -129,13 +166,57 @@ p.nico-description {
   -moz-animation-iteration-count: 1;
 }
 
+@media screen and (max-width: 960px) {
+  section.item {
+    width: 280px;
+    height: 210px;
+    float: left;
+    margin: 1em 8px;
+  }
+  section.item h1 {
+    font-size: 125%;
+    line-height: 1;
+  }
+  p.nico-description {
+    display: none;
+  }
+  p.nico-info small {
+    font-size: 11px;
+  }
+  section.item .item_content .nico-thumbnail {
+    width: 100%;
+    text-align: center;
+  }
+  .slide-in {
+    animation-name: fade-in;
+    -webkit-animation-name: fade-in;
+    -moz-animation-name: fade-in;
+  }
+  .slide-out {
+    animation-name: fade-out;
+    -webkit-animation-name: fade-out;
+    -moz-animation-name: fade-out;
+  }
+}
+
 @media screen and (max-width: 650px) {
+  .content {
+    width: 650px;
+  }
+  section.item {
+    width: 200px;
+    height: 180px;
+  }
   section.item h1 {
     font-size: 115%;
+    line-height: 1;
   }
   section.item p,
   section.item a {
     font-size: 80%;
+  }
+  p.nico-info {
+    display: none;
   }
   section.item small {
     font-size: 100%;

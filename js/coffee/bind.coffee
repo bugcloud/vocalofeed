@@ -1,3 +1,127 @@
+class Loading
+  constructor: () ->
+    @html = """
+<style>
+#loadingWrapper {
+background:rgba(10,10,10,0.6);
+width:100%;
+height:100%;
+position:absolute;
+top:0;
+left:0;
+z-index:9999;
+}
+
+#bowlG{
+position:relative;
+width:128px;
+height:128px;
+margin:0 auto;
+}
+
+#bowl_ringG{
+position:absolute;
+width:128px;
+height:128px;
+border:11px solid #FFFFFF;
+-moz-border-radius:128px;
+-webkit-border-radius:128px;
+border-radius:128px;
+}
+
+.ball_holderG{
+position:absolute;
+width:34px;
+height:128px;
+left:47px;
+top:0px;
+-webkit-animation-name:ball_moveG;
+-webkit-animation-duration:2.5s;
+-webkit-animation-iteration-count:infinite;
+-webkit-animation-timing-function:linear;
+-moz-animation-name:ball_moveG;
+-moz-animation-duration:2.5s;
+-moz-animation-iteration-count:infinite;
+-moz-animation-timing-function:linear;
+-o-animation-name:ball_moveG;
+-o-animation-duration:2.5s;
+-o-animation-iteration-count:infinite;
+-o-animation-timing-function:linear;
+-ms-animation-name:ball_moveG;
+-ms-animation-duration:2.5s;
+-ms-animation-iteration-count:infinite;
+-ms-animation-timing-function:linear;
+}
+
+.ballG{
+position:absolute;
+left:0px;
+top:-30px;
+width:51px;
+height:51px;
+background:#FFFFFF;
+-moz-border-radius:43px;
+-webkit-border-radius:43px;
+border-radius:43px;
+}
+
+@-webkit-keyframes ball_moveG{
+0%{
+-webkit-transform:rotate(0deg)}
+
+100%{
+-webkit-transform:rotate(360deg)}
+
+}
+
+@-moz-keyframes ball_moveG{
+0%{
+-moz-transform:rotate(0deg)}
+
+100%{
+-moz-transform:rotate(360deg)}
+
+}
+
+@-o-keyframes ball_moveG{
+0%{
+-o-transform:rotate(0deg)}
+
+100%{
+-o-transform:rotate(360deg)}
+
+}
+
+@-ms-keyframes ball_moveG{
+0%{
+-ms-transform:rotate(0deg)}
+
+100%{
+-ms-transform:rotate(360deg)}
+
+}
+
+</style>
+<section id="loadingWrapper">
+<div id="bowlG">
+<div id="bowl_ringG">
+<div class="ball_holderG">
+<div class="ballG">
+</div>
+</div>
+</div>
+</div>
+</section>
+    """
+
+  show: () ->
+    _that = this
+    $("body").append _that.html
+    $("#bowlG").css('top', "#{Math.floor( $(window).height()/2 - 64 )}px")
+  hide: () ->
+    $("#loadingWrapper").fadeOut 500, () ->
+      $(this).remove()
+
 class Video
   constructor: (params) ->
     @title = if params.title? then params.title else null
@@ -32,9 +156,12 @@ class Niconico
     @type = "daily"
   feed: () ->
     "feed/#{@type}.xml"
-  fetch: (callback) ->
+  fetch: (callback, beforeRequest) ->
+    unless before?
+      beforeRequest = this.defaultBeforeRequest
     unless callback?
       callback = this.defaultCallback
+    beforeRequest.call()
     $.ajax this.feed(),
       cache: true,
       type: 'GET',
@@ -59,18 +186,19 @@ class Niconico
 
   defaultCallback: (data) ->
     itemsAreVisible = $(".item:visible").size() > 0
-    intervalAll = if itemsAreVisible then 1500 else 1
+    intervalAll = if itemsAreVisible then 2100 else 1
     intervalScroll = if itemsAreVisible then 350 else 1
+    _loadingView.hide()
     $('html, body').animate {scrollTop: 0}, intervalScroll, () ->
       target = $("#main")
 
       if itemsAreVisible
         i = 0
-        $(".item:lt(5)").each () ->
+        $(".item:lt(6)").each () ->
           _that = this
           i += 400
           setTimeout () ->
-            $(_that).addClass('slice-out')
+            $(_that).addClass('slide-out')
             setTimeout () ->
               $(_that).css('opacity', 0)
             , 700
@@ -98,19 +226,24 @@ class Niconico
         for v in _videos.list
           target.append v.toHtml()
         interval = 0
-        $(".item:lt(5)").each () ->
+        $(".item:lt(6)").each () ->
           interval += 400
           _that = this
           setTimeout () ->
-            $(_that).addClass('slice-in')
+            $(_that).addClass('slide-in')
+            $(_that).css('opacity', 1)
           , interval
         setTimeout () ->
           $(".item").css('opacity', 1)
-        ,(interval)
+        ,(interval + 400)
       , intervalAll
+
+  defaultBeforeRequest: () ->
+    _loadingView.show()
 
 _nico = new Niconico()
 _videos = new VideoList()
+_loadingView = new Loading()
 
 $ ->
   _nico.fetch()
