@@ -117,7 +117,7 @@ body {
 
 section.item {
   width: 940px;
-  background-color: rgba(255, 255, 255, 0.85);
+  background-color: rgba(5, 5, 5, 0.8);
   margin: 1em 0;
   padding: 30px;
   opacity: 0;
@@ -135,7 +135,7 @@ section.item .item_content .nico-thumbnail {
 }
 
 p.nico-description {
-  color: #555;
+  color: #fff;
   line-height: 1.8;
 }
 
