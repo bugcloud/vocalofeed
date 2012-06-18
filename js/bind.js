@@ -112,7 +112,7 @@ Niconico = (function() {
   Niconico.prototype.defaultCallback = function(data) {
     var intervalAll, intervalScroll, itemsAreVisible;
     itemsAreVisible = $(".item:visible").size() > 0;
-    intervalAll = itemsAreVisible ? 1500 : 1;
+    intervalAll = itemsAreVisible ? 2100 : 1;
     intervalScroll = itemsAreVisible ? 350 : 1;
     _loadingView.hide();
     return $('html, body').animate({
@@ -122,7 +122,7 @@ Niconico = (function() {
       target = $("#main");
       if (itemsAreVisible) {
         i = 0;
-        $(".item:lt(5)").each(function() {
+        $(".item:lt(6)").each(function() {
           var _that;
           _that = this;
           i += 400;
@@ -164,17 +164,18 @@ Niconico = (function() {
           target.append(v.toHtml());
         }
         interval = 0;
-        $(".item:lt(5)").each(function() {
+        $(".item:lt(6)").each(function() {
           var _that;
           interval += 400;
           _that = this;
           return setTimeout(function() {
-            return $(_that).addClass('slide-in');
+            $(_that).addClass('slide-in');
+            return $(_that).css('opacity', 1);
           }, interval);
         });
         return setTimeout(function() {
           return $(".item").css('opacity', 1);
-        }, interval);
+        }, interval + 400);
       }, intervalAll);
     });
   };
