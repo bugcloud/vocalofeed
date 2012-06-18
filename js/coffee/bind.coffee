@@ -134,7 +134,7 @@ class Video
   toHtml: () ->
     imgSrc = $(@content).find('img:first').attr('src')
     c = $(@content)
-    c.find('img:first').attr('src', '').attr('data-original', imgSrc).addClass('lazy')
+    c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy')
     tmp = "<div></div>"
     cc = $(tmp).append(c).html()
     html = """
