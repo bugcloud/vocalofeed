@@ -132,11 +132,16 @@ class Video
     @content = if params.content? then params.content else null
     @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9０-９]+位(：|:)/, "")}") else null
   toHtml: () ->
+    imgSrc = $(@content).find('img:first').attr('src')
+    c = $(@content)
+    c.find('img:first').attr('src', '').attr('data-original', imgSrc).addClass('lazy')
+    tmp = "<div></div>"
+    cc = $(tmp).append(c).html()
     html = """
       <section class='item clearfix'>
         <div class='item_content clearfix'>
           <h1><a href='#{@link}' target='_blank'>#{@title}</a></h1>
-          #{@content}
+          #{cc}
         </div>
         <div class='item_extra'>
           <a href='#{@youtube_search}' target='_blank'>YouTube Search</a>
@@ -229,12 +234,15 @@ class Niconico
         $(".item:lt(6)").each () ->
           interval += 400
           _that = this
+          $(_that).find("img.lazy").lazyload
+            effect: "fadeIn"
           setTimeout () ->
             $(_that).addClass('slide-in')
             $(_that).css('opacity', 1)
           , interval
         setTimeout () ->
           $(".item").css('opacity', 1)
+          $("img.lazy").lazyload()
         ,(interval + 400)
       , intervalAll
 
