@@ -134,7 +134,9 @@ class Video
   toHtml: () ->
     imgSrc = $(@content).find('img:first').attr('src')
     c = $(@content)
-    c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy')
+    nicoThumb = c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy')
+    nicoThumb.wrap "<a href='player.html?id=#{@id}' target='_blank'>"
+
     tmp = "<div></div>"
     cc = $(tmp).append(c).html()
     html = """

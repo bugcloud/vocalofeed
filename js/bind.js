@@ -38,10 +38,11 @@
     }
 
     Video.prototype.toHtml = function() {
-      var c, cc, html, imgSrc, tmp;
+      var c, cc, html, imgSrc, nicoThumb, tmp;
       imgSrc = $(this.content).find('img:first').attr('src');
       c = $(this.content);
-      c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy');
+      nicoThumb = c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy');
+      nicoThumb.wrap("<a href='player.html?id=" + this.id + "' target='_blank'>");
       tmp = "<div></div>";
       cc = $(tmp).append(c).html();
       html = "<section class='item clearfix'>\n  <div class='item_content clearfix'>\n    <h1><a href='" + this.link + "' target='_blank'>" + this.title + "</a></h1>\n    " + cc + "\n  </div>\n  <div class='item_extra'>\n    <a href='" + this.youtube_search + "' target='_blank'>YouTube Search</a>\n  </div>\n</section>";
