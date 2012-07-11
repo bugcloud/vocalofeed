@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="ja">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=0.6, minimum-scale=0.6, maximum-scale=1.0">
+    <title>.Ranking - VOCALOID</title>
+  </head>
+  <body>
+    <script>
+      var query = window.location.search
+      var videoId = query.substr(query.lastIndexOf('?') + 1 + "id=".length)
+      var tag = "<script src='http://ext.nicovideo.jp/thumb_watch/" + videoId + "' type='text/javascript'><\/script>"
+      console.log(tag)
+      document.write(tag)
+    </script>
+  </body>
+</html>
