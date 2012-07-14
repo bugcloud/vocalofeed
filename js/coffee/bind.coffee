@@ -161,23 +161,39 @@ class VideoList
 class Niconico
   constructor: () ->
     @type = "daily"
+    @dataCache =
+      daily: null
+      weekly: null
+      monthly: null
   feed: () ->
     "feed/#{@type}.xml"
+  getCache: () ->
+    eval("this.dataCache.#{@type}")
+  setCache: (data) ->
+    eval("this.dataCache.#{@type} = data")
+  hasCached: () ->
+    c = eval("this.dataCache.#{@type}")
+    c isnt null
   fetch: (callback, beforeRequest) ->
+    _that = this
     unless before?
       beforeRequest = this.defaultBeforeRequest
     unless callback?
       callback = this.defaultCallback
     beforeRequest.call()
-    $.ajax this.feed(),
-      cache: true,
-      type: 'GET',
-      data: {rss: 'atom'},
-      dataType: 'xml',
-      success: (data, status) ->
-        callback.call(this, data)
-      error: (request, status, error) ->
-        console.log error
+    if _that.hasCached()
+      callback.call(this, _that.getCache())
+    else
+      $.ajax this.feed(),
+        cache: true,
+        type: 'GET',
+        data: {rss: 'atom'},
+        dataType: 'xml',
+        success: (data, status) ->
+          _that.setCache(data)
+          callback.call(this, data)
+        error: (request, status, error) ->
+          console.log error
 
   fetchDaily: (callback) ->
     @type = "daily"
