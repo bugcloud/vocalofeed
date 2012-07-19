@@ -185,7 +185,7 @@ class Niconico
       callback.call(this, _that.getCache())
     else
       $.ajax this.feed(),
-        cache: true,
+        cache: false,
         type: 'GET',
         data: {rss: 'atom'},
         dataType: 'xml',
