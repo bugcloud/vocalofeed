@@ -71,13 +71,34 @@
 
     function Niconico() {
       this.type = "daily";
+      this.dataCache = {
+        daily: null,
+        weekly: null,
+        monthly: null
+      };
     }
 
     Niconico.prototype.feed = function() {
       return "feed/" + this.type + ".xml";
     };
 
+    Niconico.prototype.getCache = function() {
+      return eval("this.dataCache." + this.type);
+    };
+
+    Niconico.prototype.setCache = function(data) {
+      return eval("this.dataCache." + this.type + " = data");
+    };
+
+    Niconico.prototype.hasCached = function() {
+      var c;
+      c = eval("this.dataCache." + this.type);
+      return c !== null;
+    };
+
     Niconico.prototype.fetch = function(callback, beforeRequest) {
+      var _that;
+      _that = this;
       if (typeof before === "undefined" || before === null) {
         beforeRequest = this.defaultBeforeRequest;
       }
@@ -85,20 +106,25 @@
         callback = this.defaultCallback;
       }
       beforeRequest.call();
-      return $.ajax(this.feed(), {
-        cache: true,
-        type: 'GET',
-        data: {
-          rss: 'atom'
-        },
-        dataType: 'xml',
-        success: function(data, status) {
-          return callback.call(this, data);
-        },
-        error: function(request, status, error) {
-          return console.log(error);
-        }
-      });
+      if (_that.hasCached()) {
+        return callback.call(this, _that.getCache());
+      } else {
+        return $.ajax(this.feed(), {
+          cache: false,
+          type: 'GET',
+          data: {
+            rss: 'atom'
+          },
+          dataType: 'xml',
+          success: function(data, status) {
+            _that.setCache(data);
+            return callback.call(this, data);
+          },
+          error: function(request, status, error) {
+            return console.log(error);
+          }
+        });
+      }
     };
 
     Niconico.prototype.fetchDaily = function(callback) {
