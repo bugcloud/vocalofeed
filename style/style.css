@@ -168,7 +168,10 @@ p.nico-description {
   -moz-animation-iteration-count: 1;
 }
 
-@media screen and (max-width: 960px) {
+@media screen and (max-width: 1080px) {
+  .container {
+    width: 715px;
+  }
   section.item {
     width: 280px;
     height: 210px;
@@ -201,9 +204,11 @@ p.nico-description {
   }
 }
 
-@media screen and (max-width: 650px) {
+@media screen and (max-width: 700px) {
+  .container {
+    width: 535px;
+  }
   .content {
-    width: 650px;
     font-size: 12px;
   }
   section.item {
