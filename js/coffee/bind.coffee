@@ -252,8 +252,6 @@ class Niconico
         $(".item:lt(6)").each () ->
           interval += 400
           _that = this
-          $(_that).find("img.lazy").lazyload
-            effect: "fadeIn"
           setTimeout () ->
             $(_that).addClass('slide-in')
             $(_that).css('opacity', 1)

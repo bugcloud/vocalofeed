@@ -201,9 +201,6 @@
             var _that;
             interval += 400;
             _that = this;
-            $(_that).find("img.lazy").lazyload({
-              effect: "fadeIn"
-            });
             return setTimeout(function() {
               $(_that).addClass('slide-in');
               return $(_that).css('opacity', 1);
