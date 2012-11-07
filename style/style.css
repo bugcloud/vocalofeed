@@ -1,3 +1,15 @@
+/* Override bootstrap --------------------------------- */
+.container {
+  margin-left: 12px;
+}
+
+.navbar-fixed-top,
+.navbar-fixed-top .navbar-inner
+.navbar-fixed-top .container {
+  background: rgba(5, 5, 5, .1);
+}
+/* */
+
 /* animations --------------------------------- */
 @keyframes slide-in {
   0% {
@@ -107,26 +119,54 @@
 /* */
 
 body {
-  background: url(../img/bg.png) repeat top left;
+  background: url(../img/bg.png) repeat left top rgba(15, 15, 15, 1);
   overflow-x: hidden;
 }
 
 #main {
-  margin-top: 85px;
+  display: -webkit-box;
+  display: -moz-box;
+  display: box;
+  -webkit-box-orient: horizontal;
+  -moz-box-orient: horizontal;
+  box-orient: horizontal;
+  margin-top: 40px;
+}
+
+.navbar.navbar-fixed-bottom {
+  width: 230px;
 }
 
 section.item {
-  width: 940px;
-  background-color: rgba(5, 5, 5, 0.8);
-  margin: 1em 0;
-  padding: 30px;
+  background-color: rgba(0, 127, 127, 0.3);
+  border: solid 1px rgba(0, 127, 127, 0.6);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px
+  color: #fff;
+  margin: 1em 3px;
   opacity: 0;
-  -webkit-border-radius: 8px;
-  -moz-border-radius: 8px;
-  border-radius: 8px
-  -webkit-box-shadow: 2px 2px 6px 1px #171717;
-  -moz-box-shadow: 2px 2px 6px 1px #171717;
-  box-shadow: 2px 2px 6px 1px #171717;
+  padding: 8px 30px 10px 30px;
+  width: 245px;
+}
+
+section.item h1 {
+  font-size: 115%;
+  line-height: 1.5;
+}
+
+section.item h1 a,
+section.item .item_extra a {
+  color: rgba(255, 255, 255, 0.75);
+  -webkit-filter: drop-shadow(0px 0px 5px rgba(0,255,255,0.95));
+  -moz-filter: drop-shadow(0px 0px 5px rgba(0,255,255,0.95));
+  filter: drop-shadow(0px 0px 5px rgba(0,255,255,0.95));
+}
+
+section.item h1 a:hover,
+section.item .item_extra a:hover {
+  color: #fff;
+  text-decoration: none;
 }
 
 section.item .item_content .nico-thumbnail {
@@ -134,11 +174,18 @@ section.item .item_content .nico-thumbnail {
   margin: 5px 25px 15px 0;
 }
 
-p.nico-description {
-  color: #fff;
+.nico-description {
+  color: rgba(255, 255, 255, 0.75);
   line-height: 1.8;
-  height: 95px;
-  overflow: hidden;
+  word-break: break-all;
+}
+
+.nico-description,
+.nico-info {
+  border-bottom: solid 1px rgba(0, 0, 0, .3);
+  box-shadow: 0 1px 0 rgba(0, 127, 127, .4);
+  margin-bottom: 1em;
+  padding-bottom: 1em;
 }
 
 .slide-in {
@@ -168,6 +215,7 @@ p.nico-description {
   -moz-animation-iteration-count: 1;
 }
 
+/*
 @media screen and (max-width: 1080px) {
   .container {
     width: 715px;
@@ -233,3 +281,4 @@ p.nico-description {
     font-size: 100%;
   }
 }
+*/
