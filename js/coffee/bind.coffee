@@ -209,22 +209,22 @@ class Niconico
 
   defaultCallback: (data) ->
     itemsAreVisible = $(".item:visible").size() > 0
-    intervalAll = if itemsAreVisible then 2100 else 1
-    intervalScroll = if itemsAreVisible then 350 else 1
+    intervalAll = if itemsAreVisible then 1300 else 1
+    intervalScroll = if itemsAreVisible then 150 else 1
     _loadingView.hide()
-    $('html, body').animate {scrollTop: 0}, intervalScroll, () ->
+    $('html, body').animate {scrollLeft: 0}, intervalScroll, () ->
       target = $("#main")
 
       if itemsAreVisible
         i = 0
-        $(".item:lt(6)").each () ->
+        $(".item:lt(5)").each () ->
           _that = this
-          i += 400
+          i += 200
           setTimeout () ->
-            $(_that).addClass('slide-out')
+            $(_that).addClass('visible-out')
             setTimeout () ->
               $(_that).css('opacity', 0)
-            , 700
+            , 500
           , i
 
       setTimeout () ->
@@ -249,11 +249,11 @@ class Niconico
         for v in _videos.list
           target.append v.toHtml()
         interval = 0
-        $(".item:lt(6)").each () ->
+        $(".item:lt(5)").each () ->
           interval += 400
           _that = this
           setTimeout () ->
-            $(_that).addClass('slide-in')
+            $(_that).addClass('visible-in')
             $(_that).css('opacity', 1)
           , interval
         setTimeout () ->
