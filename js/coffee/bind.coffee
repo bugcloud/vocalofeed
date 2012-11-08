@@ -146,7 +146,7 @@ class Video
           #{cc}
         </div>
         <div class='item_extra'>
-          <a href='#{@youtube_search}' target='_blank'>YouTube Search</a>
+          <a href='#{@youtube_search}' target='_blank' class="btn btn-link"><i class="icon-search icon-white"></i> YouTube</a>
         </div>
       </section>
     """
