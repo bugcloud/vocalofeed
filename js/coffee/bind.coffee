@@ -6,7 +6,7 @@ class Loading
 background:rgba(10,10,10,0.6);
 width:100%;
 height:100%;
-position:absolute;
+position:fixed;
 top:0;
 left:0;
 z-index:9999;
@@ -133,12 +133,11 @@ class Video
     @youtube_search = if params.title? then encodeURI("http://www.youtube.com/results?search_query=#{params.title.replace(/第[0-9０-９]+位(：|:)/, "")}") else null
   toHtml: () ->
     imgSrc = $(@content).find('img:first').attr('src')
-    c = $(@content)
-    nicoThumb = c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy')
-    nicoThumb.wrap "<a href='player.html?id=#{@id}' target='_blank'>"
-
+    $c = $(@content)
+    nicoThumb = $c.find('img:first').attr('src', 'img/loading.png').attr('data-original', imgSrc).addClass('lazy')
+    nicoThumb.wrap "<a href='player.html?id=#{@id}' target='_blank'></a>"
     tmp = "<div></div>"
-    cc = $(tmp).append(c).html()
+    cc = $(tmp).append($c).html()
     html = """
       <section class='item clearfix'>
         <div class='item_content clearfix'>
@@ -212,7 +211,7 @@ class Niconico
     intervalAll = if itemsAreVisible then 1300 else 1
     intervalScroll = if itemsAreVisible then 150 else 1
     _loadingView.hide()
-    $('html, body').animate {scrollLeft: 0}, intervalScroll, () ->
+    $('html, body').animate {scrollTop: 0, scrollLeft: 0}, intervalScroll, () ->
       target = $("#main")
 
       if itemsAreVisible
