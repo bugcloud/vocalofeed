@@ -13,33 +13,33 @@
 /* animations --------------------------------- */
 @-webkit-keyframes slide-in {
   0% {
-    margin-left: 2000px; opacity: 0; -webkit-transform: scale(0,0);}
+    margin-left: 2000px; opacity: 0;}
   30% {
     margin-left: 200px; }
   70% {
     opacity: 0.7; }
   100% {
-    margin-left: 0; opacity: 1; -webkit-transform: scale(1,1);}
+    margin-left: 0; opacity: 1;}
   }
 @-moz-keyframes slide-in {
   0% {
-    margin-left: 2000px; opacity: 0; -moz-transform: scale(0,0);}
+    margin-left: 2000px; opacity: 0;}
   30% {
     margin-left: 200px; }
   70% {
     opacity: 0.7; }
   100% {
-    margin-left: 0; opacity: 1; -moz-transform: scale(1,1);}
+    margin-left: 0; opacity: 1;}
   }
 @keyframes slide-in {
   0% {
-    margin-left: 2000px; opacity: 0; transform: scale(0,0);}
+    margin-left: 2000px; opacity: 0;}
   30% {
     margin-left: 200px; }
   70% {
     opacity: 0.7; }
   100% {
-    margin-left: 0; opacity: 1; transform: scale(1,1);}
+    margin-left: 0; opacity: 1;}
   }
 
 @-webkit-keyframes fade-out {
@@ -177,6 +177,37 @@ section.item .item_content .nico-thumbnail {
 }
 
 @media screen and (min-width: 1080px) {
+  @-webkit-keyframes slide-in {
+    0% {
+      margin-left: 2000px; opacity: 0; -webkit-transform: scale(0,0);}
+    30% {
+      margin-left: 200px; }
+    70% {
+      opacity: 0.7; }
+    100% {
+      margin-left: 0; opacity: 1; -webkit-transform: scale(1,1);}
+    }
+  @-moz-keyframes slide-in {
+    0% {
+      margin-left: 2000px; opacity: 0; -moz-transform: scale(0,0);}
+    30% {
+      margin-left: 200px; }
+    70% {
+      opacity: 0.7; }
+    100% {
+      margin-left: 0; opacity: 1; -moz-transform: scale(1,1);}
+    }
+  @keyframes slide-in {
+    0% {
+      margin-left: 2000px; opacity: 0; transform: scale(0,0);}
+    30% {
+      margin-left: 200px; }
+    70% {
+      opacity: 0.7; }
+    100% {
+      margin-left: 0; opacity: 1; transform: scale(1,1);}
+    }
+
   .navbar .container {
     margin: auto auto auto 12px;
   }
