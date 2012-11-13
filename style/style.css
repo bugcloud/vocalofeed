@@ -123,6 +123,7 @@ section.item .item_content .nico-thumbnail {
 .nico-description {
   color: rgba(255, 255, 255, 0.75);
   line-height: 1.8;
+  min-height: 70px;
   word-break: break-all;
 }
 
@@ -159,4 +160,32 @@ section.item .item_content .nico-thumbnail {
   animation-iteration-count: 1;
   -webkit-animation-iteration-count: 1;
   -moz-animation-iteration-count: 1;
+}
+
+@media screen and (min-width: 1080px) {
+  .navbar .container {
+    margin: auto auto auto 12px;
+  }
+
+  .container {
+    margin: 0;
+    width: 100%;
+  }
+
+  #main {
+    display: -webkit-box;
+    display: -moz-box;
+    display: box;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    box-orient: vertical;
+    margin-top: 40px;
+  }
+
+  #main > section.item {
+    -webkit-box-flex: 1;
+    box-flex: 1;
+    margin-bottom: 0;
+    width: auto;
+  }
 }
