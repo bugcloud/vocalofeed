@@ -268,6 +268,16 @@ _nico = new Niconico()
 _videos = new VideoList()
 _loadingView = new Loading()
 
+###
+# Add jQuery function
+###
+jQuery.fn.scrollToWithAnimation = (options) ->
+  options = $.extend { duration: 300, offset: { top:0, left:0 } }, options
+  $that = this.first()
+  position = $that.position()
+  $("html,body").animate {scrollTop: position.top - options.offset.top, scrollLeft: position.left - options.offset.left}, options.duration
+  $that
+
 $ ->
   _nico.fetch()
   $(".link_ranking").on 'click', () ->
@@ -280,3 +290,15 @@ $ ->
       _nico.fetchWeekly()
     else if type is "monthly"
       _nico.fetchMontyly()
+
+  # set swipe events only when window.width < 1080px
+  if $(window).width() < 1080
+    params =
+      offset: { top: 45, left: 0 }
+    $(document).on 'swiperight', ".item", (e) ->
+      $prev = $(this).prev()
+      $prev.scrollToWithAnimation(params) if $prev.length > 0
+
+    $(document).on 'swipeleft', ".item", (e) ->
+      $next = $(this).next()
+      $next.scrollToWithAnimation(params) if $next.length > 0

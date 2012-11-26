@@ -228,9 +228,33 @@ _videos = new VideoList();
 
 _loadingView = new Loading();
 
+/*
+# Add jQuery function
+*/
+
+
+jQuery.fn.scrollToWithAnimation = function(options) {
+  var $that, position;
+  options = $.extend({
+    duration: 300,
+    offset: {
+      top: 0,
+      left: 0
+    }
+  }, options);
+  $that = this.first();
+  position = $that.position();
+  $("html,body").animate({
+    scrollTop: position.top - options.offset.top,
+    scrollLeft: position.left - options.offset.left
+  }, options.duration);
+  return $that;
+};
+
 $(function() {
+  var params;
   _nico.fetch();
-  return $(".link_ranking").on('click', function() {
+  $(".link_ranking").on('click', function() {
     var type;
     $(".active").removeClass("active");
     $(this).parent().addClass("active");
@@ -243,4 +267,26 @@ $(function() {
       return _nico.fetchMontyly();
     }
   });
+  if ($(window).width() < 1080) {
+    params = {
+      offset: {
+        top: 45,
+        left: 0
+      }
+    };
+    $(document).on('swiperight', ".item", function(e) {
+      var $prev;
+      $prev = $(this).prev();
+      if ($prev.length > 0) {
+        return $prev.scrollToWithAnimation(params);
+      }
+    });
+    return $(document).on('swipeleft', ".item", function(e) {
+      var $next;
+      $next = $(this).next();
+      if ($next.length > 0) {
+        return $next.scrollToWithAnimation(params);
+      }
+    });
+  }
 });
