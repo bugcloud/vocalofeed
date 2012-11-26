@@ -267,7 +267,7 @@ $(function() {
       return _nico.fetchMontyly();
     }
   });
-  if ($(window).width() < 1080) {
+  if ($(window).width() < 1080 && window.location.search.indexOf("swipe=on") > 0) {
     params = {
       offset: {
         top: 45,

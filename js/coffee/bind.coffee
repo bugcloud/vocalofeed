@@ -292,7 +292,7 @@ $ ->
       _nico.fetchMontyly()
 
   # set swipe events only when window.width < 1080px
-  if $(window).width() < 1080
+  if $(window).width() < 1080 and window.location.search.indexOf("swipe=on") > 0
     params =
       offset: { top: 45, left: 0 }
     $(document).on 'swiperight', ".item", (e) ->
